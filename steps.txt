@@ -1,0 +1,50 @@
+
+
+urlshortener --> urlshorty
+short --> shorter
+
+Install Redis in ubuntu
+
+sudo apt update
+sudo apt install redis-server
+
+`check if redis is runnig`
+
+sudo systemctl status redis-server
+redis-server.service - Advanced key-value store
+   Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sat 2021-03-13 13:13:46 IST; 9s ago
+     Docs: http://redis.io/documentation,
+           man:redis-server(1)
+ Main PID: 30638 (redis-server)
+    Tasks: 4 (limit: 4915)
+   CGroup: /system.slice/redis-server.service
+           └─30638 /usr/bin/redis-server 127.0.0.1:6379
+
+Mar 13 13:13:46 hive systemd[1]: Starting Advanced key-value store...
+Mar 13 13:13:46 hive systemd[1]: redis-server.service: Can't open PID file /var/run/redis/redis-server.pid (yet?) after start: No such file or directory
+Mar 13 13:13:46 hive systemd[1]: Started Advanced key-value store.
+
+
+virtualenv --python=python3.7 venv 
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py createsuperuser
+python manage.py makemigrations
+python maneg.py migrate
+
+curl --request POST \
+  --url http://127.0.0.1:8000/shorten \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data url=https://google.com/
+
+  response 
+    {
+        "success": true,
+        "id": "uwE54MylzKq0",
+        "link": "http://127.0.0.1:8000/uwE54MylzKq0",
+        "original_url": "https://google.com/"
+    }
+
+curl --request GET \
+  --url http://127.0.0.1:8000/uwE54MylzKq0
